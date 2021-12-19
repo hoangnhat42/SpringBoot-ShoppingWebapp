@@ -14,8 +14,8 @@
 	<packaging>pom</packaging>
 	
 	<name>ShopmeWebParent</name>
-	<description>parent Spring web project</description>
-	
+	<description>parent spring web project</description>
+
 	<properties>
 		<java.version>15</java.version>
 	</properties>
@@ -24,16 +24,26 @@
 		<module>ShopmeBackEnd</module>
 		<module>ShopmeFrontEnd</module>
 	</modules>
+
 	<dependencies>
-	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 		
-			<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -46,7 +56,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
+				
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -68,13 +78,13 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
-		</dependency>
+		</dependency>	
 		
 		<dependency>
 			<groupId>com.shopme</groupId>
 			<artifactId>ShopmeCommon</artifactId>
 			<version>0.0.1-SNAPSHOT</version>		
-		</dependency>
+		</dependency>	
 	</dependencies>
 
 </project>
