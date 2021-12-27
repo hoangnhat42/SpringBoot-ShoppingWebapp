@@ -1,23 +1,25 @@
 package com.shopme.common.entity;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.shopme.common.Constants;
-
 @Entity
 @Table(name = "users")
-public class User extends IdBasedEntity {
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
@@ -36,8 +38,7 @@ public class User extends IdBasedEntity {
 	
 	private boolean enabled;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	//bảng trung gian trong manytomany
+	@ManyToMany
 	@JoinTable(
 			name = "users_roles",
 			joinColumns = @JoinColumn(name = "user_id"),
@@ -53,6 +54,15 @@ public class User extends IdBasedEntity {
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -125,7 +135,7 @@ public class User extends IdBasedEntity {
 	public String getPhotosImagePath() {
 		if (id == null || photos == null) return "/images/default-user.png";
 		
-		return Constants.S3_BASE_URI + "/user-photos/" + this.id + "/" + this.photos;
+		return "/user-photos/" + this.id + "/" + this.photos;
 	}
 	
 	@Transient
@@ -133,16 +143,4 @@ public class User extends IdBasedEntity {
 		return firstName + " " + lastName;
 	}
 	
-	public boolean hasRole(String roleName) {
-		Iterator<Role> iterator = roles.iterator();
-		
-		while (iterator.hasNext()) {
-			Role role = iterator.next();
-			if (role.getName().equals(roleName)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
 }
