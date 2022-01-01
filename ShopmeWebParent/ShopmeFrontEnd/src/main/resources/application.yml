@@ -21,8 +21,15 @@ spring:
       client:
         registration:
           google:
-            client-id: 766149028215-uquvo9tj1n4ghjrvvqvgs8h954iv2s3t.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 182557182495-4ojqb7gpdf0cee6i97md5b3tns5sbc1e.apps.googleusercontent.com
+            client-secret: zpJMafs7JAf4fNVLZirNcRnO
             scope:
             - email
             - profile
+          facebook:
+            client-id: 346840680212265
+            client-secret: 6a67b1d1be9d7402649995363feadee8
+            scope:
+            - email
+            - public_profile
+  mvc:    pathmatch:      matching-strategy: ant-path-matcher

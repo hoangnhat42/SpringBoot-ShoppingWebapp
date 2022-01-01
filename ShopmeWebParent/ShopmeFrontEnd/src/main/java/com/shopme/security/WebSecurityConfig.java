@@ -3,6 +3,7 @@ package com.shopme.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -18,7 +19,7 @@ import com.shopme.security.oauth.OAuth2LoginSuccessHandler;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	@Lazy
 	@Autowired private CustomerOAuth2UserService oAuth2UserService;
 	@Autowired private OAuth2LoginSuccessHandler oauth2LoginHandler;
 	@Autowired private DatabaseLoginSuccessHandler databaseLoginHandler;
@@ -31,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/customer").authenticated()
+			.antMatchers("/account_details", "/update_account_details").authenticated()
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
