@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.shopme.common.entity.CartItem;
 import com.shopme.common.entity.Customer;
-import com.shopme.common.entity.Product;
+import com.shopme.common.entity.product.Product;
 import com.shopme.product.ProductRepository;
 
 @Service
@@ -60,5 +60,9 @@ public class ShoppingCartService {
 	
 	public void removeProduct(Integer productId, Customer customer) {
 		cartRepo.deleteByCustomerAndProduct(customer.getId(), productId);
+	}
+	
+	public void deleteByCustomer(Customer customer) {
+		cartRepo.deleteByCustomer(customer.getId());
 	}
 }
