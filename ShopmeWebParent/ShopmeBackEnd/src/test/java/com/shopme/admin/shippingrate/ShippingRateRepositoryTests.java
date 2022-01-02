@@ -79,7 +79,7 @@ public class ShippingRateRepositoryTests {
 	
 	@Test
 	public void testDelete() {
-		Integer rateId = 1;
+		Integer rateId = 2;
 		repo.deleteById(rateId);
 		
 		ShippingRate rate = entityManager.find(ShippingRate.class, rateId);
