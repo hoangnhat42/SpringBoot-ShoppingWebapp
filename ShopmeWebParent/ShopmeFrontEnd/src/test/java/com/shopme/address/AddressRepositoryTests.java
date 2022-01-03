@@ -90,7 +90,7 @@ public class AddressRepositoryTests {
 	
 	@Test
 	public void testSetDefault() {
-		Integer addressId = 1;
+		Integer addressId = 8;
 		repo.setDefaultAddress(addressId);
 		
 		Address address = repo.findById(addressId).get();
@@ -102,5 +102,13 @@ public class AddressRepositoryTests {
 		Integer addressId = 8;
 		Integer customerId = 5;
 		repo.setNonDefaultForOthers(addressId, customerId);			
+	}
+	
+	@Test
+	public void testGetDefault() {
+		Integer customerId = 5;
+		Address address = repo.findDefaultByCustomer(customerId);
+		assertThat(address).isNotNull();
+		System.out.println(address);
 	}
 }

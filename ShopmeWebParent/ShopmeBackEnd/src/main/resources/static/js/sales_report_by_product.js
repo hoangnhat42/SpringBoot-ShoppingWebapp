@@ -46,7 +46,7 @@ function prepareChartDataForSalesReportByProduct(responseJSON) {
 
 function customizeChartForSalesReportByProduct() {
 	chartOptions = {
-		height: 360, width: '80%',
+		height: 360, width: '98%',
 		showRowNumber: true,
 		page: 'enable',
 		sortColumn: 2,

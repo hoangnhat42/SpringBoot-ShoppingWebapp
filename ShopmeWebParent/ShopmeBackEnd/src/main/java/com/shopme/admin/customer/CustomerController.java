@@ -80,7 +80,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/customers/save")
-	public String saveCustomer(Customer customer, Model model, RedirectAttributes ra) {
+	public String saveCustomer(Customer customer, RedirectAttributes ra) {
 		service.save(customer);
 		ra.addFlashAttribute("message", "The customer ID " + customer.getId() + " has been updated successfully.");
 		return defaultRedirectURL;
