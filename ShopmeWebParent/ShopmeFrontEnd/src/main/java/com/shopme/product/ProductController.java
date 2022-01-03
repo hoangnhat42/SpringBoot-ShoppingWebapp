@@ -20,12 +20,14 @@ import com.shopme.common.entity.product.Product;
 import com.shopme.common.exception.CategoryNotFoundException;
 import com.shopme.common.exception.ProductNotFoundException;
 import com.shopme.review.ReviewService;
+import com.shopme.review.vote.ReviewVoteService;
 
 @Controller
 public class ProductController {
 	@Autowired private ProductService productService;
 	@Autowired private CategoryService categoryService;
 	@Autowired private ReviewService reviewService;	
+	@Autowired private ReviewVoteService voteService;
 	@Autowired private ControllerHelper controllerHelper;
 
 	@GetMapping("/c/{category_alias}")
@@ -75,12 +77,13 @@ public class ProductController {
 		try {
 			Product product = productService.getProduct(alias);
 			List<Category> listCategoryParents = categoryService.getCategoryParents(product.getCategory());
-			Page<Review> listReviews = reviewService.list3MostRecentReviewsByProduct(product);
+			Page<Review> listReviews = reviewService.list3MostVotedReviewsByProduct(product);
 			
 			Customer customer = controllerHelper.getAuthenticatedCustomer(request);
 			
 			if (customer != null) {
 				boolean customerReviewed = reviewService.didCustomerReviewProduct(customer, product.getId());
+				voteService.markReviewsVotedForProductByCustomer(listReviews.getContent(), product.getId(), customer.getId());
 				
 				if (customerReviewed) {
 					model.addAttribute("customerReviewed", customerReviewed);

@@ -57,7 +57,7 @@ public class ReviewRepositoryTests {
 	
 	@Test
 	public void testGetReview() {
-		Integer id = 1;
+		Integer id = 3;
 		Review review = repo.findById(id).get();
 		
 		assertThat(review).isNotNull();
@@ -67,7 +67,7 @@ public class ReviewRepositoryTests {
 	
 	@Test
 	public void testUpdateReview() {
-		Integer id = 1;
+		Integer id = 3;
 		String headline = "An awesome camera at an awesome price";
 		String comment = "Overall great camera and is highly capable...";
 		
@@ -83,7 +83,7 @@ public class ReviewRepositoryTests {
 	
 	@Test
 	public void testDeleteReview() {
-		Integer id = 1;
+		Integer id = 3;
 		repo.deleteById(id);
 		
 		Optional<Review> findById = repo.findById(id);
