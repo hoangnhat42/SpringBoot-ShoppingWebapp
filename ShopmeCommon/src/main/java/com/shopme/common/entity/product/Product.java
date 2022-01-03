@@ -25,10 +25,10 @@ import com.shopme.common.entity.IdBasedEntity;
 @Table(name = "products")
 public class Product extends IdBasedEntity {
 	
-	@Column(unique = true, length = 256, nullable = false)
+	@Column(unique = true, length = 255, nullable = false)
 	private String name;
 	
-	@Column(unique = true, length = 256, nullable = false)
+	@Column(unique = true, length = 255, nullable = false)
 	private String alias;
 	
 	@Column(length = 512, nullable = false, name = "short_description")
@@ -83,6 +83,10 @@ public class Product extends IdBasedEntity {
 	}
 
 	public Product() {
+	}
+	
+	public Product(String name) {
+		this.name = name;
 	}
 
 	public String getName() {
